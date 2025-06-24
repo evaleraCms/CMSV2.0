@@ -13,4 +13,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1-Preview.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core\Filter\" />
+    <Folder Include="Core\Middlewares\" />
+    <Folder Include="DataTransferObjects\" />
+  </ItemGroup>
+
 </Project>
