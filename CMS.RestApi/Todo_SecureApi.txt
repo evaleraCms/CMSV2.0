@@ -4,8 +4,10 @@ Make sure the site on production is configure to the most restict certificate.
 create a user section managage to hold user info and login token.
 Do not save any role information or access lavel information in the client computer, allways on the service.
 create a role base function lavel access control to all api.
+Donot allow error tracing - make the error display to the client free of internal code shot or any information of the process.
 Add all the protections needed at CONTENT Header.
 Add filter to sanitazed request and response.
+    clean any input to the db which can consider sql injection. Specially at log in.
 Add protection to cookies is needed like secure cookie = extrict etc on program.cs
 Allway encode with the most powerfull encode method all PII "personal information identityfier".
 Implement a robust logging system to log all failers on the system special fail login attemp:
@@ -16,7 +18,12 @@ Implement a robust logging system to log all failers on the system special fail 
      and finally, make sure you have affective monitoring and alerting so that suspicious activities are detected and hendled in a timely fashion.
      NOTE: Make sure to use filters for any acros the board action like sanitazed, error login etc..
 Add implementation to lock accounts.
-Insuficient Anti-Automation:
+Insuficient Anti-Automation: pending.
+Improper Permissions:
+    Ensure a secure communication channel is being used for api interactions with all objects.
+    Create an automated process to assess the efficacy of permission settings.
+    ensure the defualt permissions are sufficiently restrictive.
+
 
 
 
