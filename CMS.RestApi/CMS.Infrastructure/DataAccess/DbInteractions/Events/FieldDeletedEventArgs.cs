@@ -2,10 +2,10 @@
 
 namespace CMS.Infrastructure.DataAccess.DbInteractions.Events
 {
-    public class FieldIDeletedEventArgs<TEntity>
+    public class FieldDeletedEventArgs<TEntity>
     {
         public TEntity[] Entities { get; set; }
     }
 
-    public delegate void FieldDeletedEventHandler<TEntity>(object sender, FieldIDeletedEventArgs<TEntity> eventArgs);
+    public delegate void FieldDeletedEventHandler<TEntity>(object sender, FieldDeletedEventArgs<TEntity> eventArgs);
 }
