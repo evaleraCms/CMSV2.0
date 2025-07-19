@@ -10,9 +10,9 @@ namespace CMS.Infrastructure.Common
     public static class ConfigSettings
     {
 
-        public static string CMSConnStr => AppData.Configuration["DBConnections:CMSConnStr:ConnectionString"];
+        //public static string CMSConnStr => AppData.Configuration["CMSConnString"];
 
-
+        public static string CMSConnStr => GetAppSetting<string>("CMSConnString");
 
         private static T GetAppSetting<T>(string key, bool isRequired = true, object defaultValue = null)
         {

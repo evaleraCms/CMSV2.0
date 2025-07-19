@@ -13,9 +13,10 @@ namespace CMS.Infrastructure.DataAccess.DbInteractions
     public class ReadonlyDataModelRepository<T> : IReadonlyDataModelRepository<T> where T : class
     {
 
-        
+        protected IDbFactory DatabaseFactory { get; private set; }
 
-
+        protected DataContext DataContext => DatabaseFactory.Get();
+        protected IQueryable<T> Table => DataContext.GetTable<T>().AsSubQuery();
         public T Get(long id)
         {
             throw new NotImplementedException();

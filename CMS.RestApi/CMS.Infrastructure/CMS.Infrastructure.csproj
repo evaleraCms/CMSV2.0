@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataAccess\DataModelRepositories\NewFolder\**" />
+    <EmbeddedResource Remove="DataAccess\DataModelRepositories\NewFolder\**" />
+    <None Remove="DataAccess\DataModelRepositories\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="DataAccess\DataModelRepositories\Interfaces\" />
     <Folder Include="ExternalService\" />
     <Folder Include="DependencyRegistar\" />
