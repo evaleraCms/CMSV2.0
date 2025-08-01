@@ -13,5 +13,9 @@ namespace CMS.Core.Extensions
         { 
             return new HtmlSanitizer().Sanitize(value);
         }
+        public static bool EqualsIgnoreCase(this string value1, string value2) {
+
+            return string.Compare(value1, value2, StringComparison.OrdinalIgnoreCase) == 0;
+        }
     }
 }

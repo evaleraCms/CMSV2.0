@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Data;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using CMS.Infrastructure.Common.Extensions;
+﻿using System.Data;
+using CMS.Core.Extensions;
 using FluentMigrator;
 using FluentMigrator.Builders;
 using FluentMigrator.Builders.Create.Index;
 using FluentMigrator.Builders.Create.Table;
-using FluentMigrator.Builders.Delete;
-using FluentMigrator.Builders.Execute;
-using FluentMigrator.Expressions;
 using FluentMigrator.Infrastructure;
 using LinqToDB.Data;
 
