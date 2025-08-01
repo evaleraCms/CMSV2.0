@@ -1,10 +1,12 @@
+using CMS.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.Design;
+using System.Runtime.CompilerServices;
 
 namespace CMS.RestApi.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+
+    public class WeatherForecastController : BaseApiController<WeatherForecastController>
     {
         private static readonly string[] Summaries = new[]
         {
@@ -13,7 +15,7 @@ namespace CMS.RestApi.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(IServiceContainer serviceContainer, ILogger<WeatherForecastController> logger) : base(serviceContainer, logger)
         {
             _logger = logger;
         }
@@ -31,3 +33,4 @@ namespace CMS.RestApi.Controllers
         }
     }
 }
+

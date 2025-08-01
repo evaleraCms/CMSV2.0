@@ -20,6 +20,7 @@ using System.Collections.Concurrent;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data.Common;
 using MySqlConnector;
+using CMS.Core.Extensions;
 
 namespace CMS.Infrastructure.DataAccess
 {

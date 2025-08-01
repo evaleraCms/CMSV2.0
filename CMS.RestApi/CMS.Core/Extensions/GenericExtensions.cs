@@ -6,7 +6,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS.Infrastructure.Common.Extensions
+namespace CMS.Core.Extensions
 {
     
     public static class GenericExtensions

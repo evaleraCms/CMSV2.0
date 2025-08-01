@@ -21,11 +21,11 @@
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
     <PackageReference Include="linq2db" Version="5.4.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.3.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0-preview.5.25277.114" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0-preview.5.25277.114" />
     <PackageReference Include="MySqlConnector" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CMS.Core\CMS.Core.csproj" />
   </ItemGroup>
 
 </Project>

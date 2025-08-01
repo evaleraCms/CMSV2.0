@@ -1,8 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using CMS.Core.Common;
 using CMS.Infrastructure.Common;
 using FluentMigrator.Builders.Create.Index;
 using FluentMigrator.Runner;
 using FluentMigrator.Runner.Logging;
+using LinqToDB.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -35,43 +37,39 @@ if (args != null)
 UpdateDatabase(serviceProvider, revertToVersion);
 
 static IServiceProvider CreateServices()
-
 {
-    var test = AppDomain.CurrentDomain.BaseDirectory;
-    string logFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", $"Migration_{DateTime.Now:yyyy-dd-MM_hh-mm-ss}.log");
-    var loDir = Path.GetDirectoryName(logFile);
-    var enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+    var dir = Directory.GetCurrentDirectory();
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
     IConfiguration config = new ConfigurationBuilder()
-        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+        .SetBasePath(dir)
         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-        .AddJsonFile($"appsettings.{enviroment}.json", optional: true, reloadOnChange: true)
+        .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
         .AddEnvironmentVariables()
         .Build();
-    AppData.Configuration = config;
-   
-    var connectionString = ConfigSettings.CMSConnStr;
-    //return null;
+    AppData.Configuration = config; // Store the configuration in a static class for global access
+    // Assumes your connection string section is named "ConnectionStrings" and has a property "CMSConnString"
+    var connectionString = config.GetSection("ConnectionStrings")["CMSConnString"];
+
     return new ServiceCollection()
         .AddFluentMigratorCore()
         .ConfigureRunner(rb =>
         {
-            rb = rb.AddMySql5() // or .AddSQLite() for SQLite
+            rb = rb.AddMySql5()
                 .WithGlobalConnectionString(connectionString)
-                .WithGlobalCommandTimeout(TimeSpan.FromMinutes(530)) // Set a global command timeout if needed
+                .WithGlobalCommandTimeout(TimeSpan.FromMinutes(530))
                 .ScanIn(typeof(Program).Assembly).For.Migrations();
-
-        }).AddLogging(lb =>
+        })
+        .AddLogging(lb =>
         {
             lb.AddFluentMigratorConsole();
-            
-        }).AddSingleton<ILoggerProvider,LogFileFluentMigratorLoggerProvider>()
+        })
+        .AddSingleton<ILoggerProvider, LogFileFluentMigratorLoggerProvider>()
         .Configure<FluentMigratorLoggerOptions>(options =>
         {
-            
-            options.ShowSql = true; // Set to true to log SQL statements
-            options.ShowElapsedTime = true; // Set to true to log elapsed time for each migration
-        }).BuildServiceProvider(false);
-
+            options.ShowSql = true;
+            options.ShowElapsedTime = true;
+        })
+        .BuildServiceProvider(false);
 }
 
 static void UpdateDatabase(IServiceProvider serviceProvider, long revertToVersion = 0)

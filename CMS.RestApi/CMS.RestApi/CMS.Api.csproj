@@ -6,11 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>87518e9c-4f98-4db9-a57d-006da093f44a</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CorrelationId" Version="3.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1-Preview.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="9.0.3" />
   </ItemGroup>
 
   <ItemGroup>

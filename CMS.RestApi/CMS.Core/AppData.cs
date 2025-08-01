@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
-namespace CMS.Infrastructure.Common
+namespace CMS.Core.Common
 {
     public static class AppData
     {
